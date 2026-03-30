@@ -1,0 +1,77 @@
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+export default function FrasesScreen() {
+  const frases = [
+    'Nunca te rindas.',
+    'El esfuerzo siempre trae resultados.',
+    'Cree en ti mismo.',
+    'Todo es posible si trabajas por ello.',
+    'La disciplina vence al talento.',
+    'Cada día es una nueva oportunidad.',
+    'Sigue adelante aunque sea lento.',
+    'Tú puedes lograrlo.',
+    'Aprender toma tiempo, pero vale la pena.',
+    'El límite lo pones tú.',
+  ];
+
+  const [fraseActual, setFraseActual] = useState(frases[0]);
+
+  const cambiarFrase = () => {
+    const indice = Math.floor(Math.random() * frases.length);
+    setFraseActual(frases[indice]);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Frases Motivacionales</Text>
+
+      <View style={styles.card}>
+        <Text style={styles.quote}>{fraseActual}</Text>
+      </View>
+
+      <TouchableOpacity style={styles.button} onPress={cambiarFrase}>
+        <Text style={styles.buttonText}>Nueva Frase</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0c4a6e',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 28,
+    textAlign: 'center',
+    marginBottom: 20,
+    fontWeight: 'bold',
+  },
+  card: {
+    backgroundColor: '#e0f2fe',
+    padding: 25,
+    borderRadius: 15,
+    marginBottom: 20,
+  },
+  quote: {
+    fontSize: 24,
+    textAlign: 'center',
+    color: '#082f49',
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#0284c7',
+    padding: 15,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+});
