@@ -1,0 +1,62 @@
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { router } from 'expo-router';
+
+export default function HomeScreen() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Proyecto Final React Native</Text>
+      <Text style={styles.subtitle}>Aplicaciones del segundo parcial</Text>
+
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/calculadora')}>
+        <Text style={styles.buttonText}>Calculadora Simple</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/generador')}>
+        <Text style={styles.buttonText}>Generador de Nombres</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/pasos')}>
+        <Text style={styles.buttonText}>Contador de Pasos</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/frases')}>
+        <Text style={styles.buttonText}>Frases Motivacionales</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#0f172a',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 28,
+    color: '#ffffff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#cbd5e1',
+    textAlign: 'center',
+    marginBottom: 30,
+  },
+  button: {
+    backgroundColor: '#2563eb',
+    padding: 16,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 17,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+});
