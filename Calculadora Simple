@@ -1,0 +1,112 @@
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+
+export default function CalculadoraScreen() {
+  const [display, setDisplay] = useState('');
+
+  const agregarValor = (valor: string) => {
+    setDisplay(display + valor);
+  };
+
+  const limpiar = () => {
+    setDisplay('');
+  };
+
+  const calcular = () => {
+    try {
+      if (display.includes('/0')) {
+        Alert.alert('Error', 'No se puede dividir entre cero');
+        return;
+      }
+
+      const resultado = eval(display);
+      setDisplay(String(resultado));
+    } catch {
+      Alert.alert('Error', 'Operación inválida');
+    }
+  };
+
+  const Boton = ({ texto, onPress }: { texto: string; onPress: () => void }) => (
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text style={styles.buttonText}>{texto}</Text>
+    </TouchableOpacity>
+  );
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Calculadora Simple</Text>
+      <Text style={styles.display}>{display || '0'}</Text>
+
+      <View style={styles.row}>
+        <Boton texto="7" onPress={() => agregarValor('7')} />
+        <Boton texto="8" onPress={() => agregarValor('8')} />
+        <Boton texto="9" onPress={() => agregarValor('9')} />
+        <Boton texto="÷" onPress={() => agregarValor('/')} />
+      </View>
+
+      <View style={styles.row}>
+        <Boton texto="4" onPress={() => agregarValor('4')} />
+        <Boton texto="5" onPress={() => agregarValor('5')} />
+        <Boton texto="6" onPress={() => agregarValor('6')} />
+        <Boton texto="×" onPress={() => agregarValor('*')} />
+      </View>
+
+      <View style={styles.row}>
+        <Boton texto="1" onPress={() => agregarValor('1')} />
+        <Boton texto="2" onPress={() => agregarValor('2')} />
+        <Boton texto="3" onPress={() => agregarValor('3')} />
+        <Boton texto="-" onPress={() => agregarValor('-')} />
+      </View>
+
+      <View style={styles.row}>
+        <Boton texto="C" onPress={limpiar} />
+        <Boton texto="0" onPress={() => agregarValor('0')} />
+        <Boton texto="=" onPress={calcular} />
+        <Boton texto="+" onPress={() => agregarValor('+')} />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#111827',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 28,
+    textAlign: 'center',
+    marginBottom: 20,
+    fontWeight: 'bold',
+  },
+  display: {
+    backgroundColor: '#1f2937',
+    color: '#fff',
+    fontSize: 40,
+    textAlign: 'right',
+    padding: 20,
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+  button: {
+    backgroundColor: '#374151',
+    flex: 1,
+    marginHorizontal: 4,
+    padding: 18,
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 22,
+    fontWeight: 'bold',
+  },
+});
