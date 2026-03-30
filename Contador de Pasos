@@ -1,0 +1,76 @@
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+export default function PasosScreen() {
+  const [pasos, setPasos] = useState(0);
+
+  const sumarPasos = () => {
+    setPasos(pasos + 1);
+  };
+
+  const reiniciar = () => {
+    setPasos(0);
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Contador de Pasos</Text>
+
+      <Text style={styles.steps}>{pasos}</Text>
+      <Text style={styles.label}>Pasos acumulados</Text>
+
+      <TouchableOpacity style={styles.button} onPress={sumarPasos}>
+        <Text style={styles.buttonText}>Sumar Paso</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.resetButton} onPress={reiniciar}>
+        <Text style={styles.buttonText}>Reiniciar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#052e16',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    color: '#fff',
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  steps: {
+    color: '#22c55e',
+    fontSize: 72,
+    fontWeight: 'bold',
+  },
+  label: {
+    color: '#d1fae5',
+    fontSize: 18,
+    marginBottom: 30,
+  },
+  button: {
+    backgroundColor: '#16a34a',
+    padding: 15,
+    borderRadius: 10,
+    width: 220,
+    marginBottom: 15,
+  },
+  resetButton: {
+    backgroundColor: '#dc2626',
+    padding: 15,
+    borderRadius: 10,
+    width: 220,
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+});
